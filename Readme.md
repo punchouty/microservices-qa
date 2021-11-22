@@ -22,3 +22,8 @@ docker build -t cud-api:0.1 ./cud-api/
 
 docker run -p 9100:9100 -e POSTGRES_URL=jdbc:postgresql://192.168.1.10:5432/postgres -e POSTGRES_USER=postgres -e POSTGRES_PASSWORD=password --name cud-api --network=avis_network -it cud-api:0.1
 ```
+### Run test environment
+```
+docker compose -f cud-api-test/src/test/resources/docker-compose.yaml up
+docker compose -f cud-api-test/src/test/resources/docker-compose.yaml down
+```

@@ -1,0 +1,39 @@
+version: '3.7'
+
+networks:
+  avis_network_test:
+    name: avis_network_test
+
+services:
+  postgres:
+    image: postgres:10.5
+    healthcheck:
+      test: psql postgres --command "select 1" -U postgres
+    restart: unless-stopped
+    networks:
+      - avis_network_test
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=password
+      - PGDATA=/data/postgres
+      - POSTGRES_DB= postgres
+    logging:
+      options:
+        max-size: 10m
+        max-file: "3"
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres:/data/postgre
+  cud-api:
+    image: cud-api:0.1
+    networks:
+      - avis_network_test
+    environment:
+      - POSTGRES_URL=jdbc:postgresql://postgres:5432/postgres
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=password
+    ports:
+      - "9100:9100"
+volumes:
+  postgres:
