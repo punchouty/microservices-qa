@@ -60,7 +60,7 @@ public class IntegrationTest {
         httpRequest.header("Content-Type", "application/json");
 
         JSONObject requestParams = new JSONObject();
-        requestParams.put("name", "apple");
+        requestParams.put("name", "Apple");
 
         httpRequest.body(requestParams.toJSONString());
 
@@ -70,6 +70,26 @@ public class IntegrationTest {
         System.out.println(formattedString);
         System.out.println("status code : " + response.statusCode());
         Assertions.assertEquals(201, response.statusCode());
+        Assertions.assertEquals("Apple", response.jsonPath().get("name"));
+    }
+
+    @Test
+    public void testCreateBrandsFailure() {
+        RestAssured.baseURI = "http://" + host + ":" + port;
+        RequestSpecification httpRequest = RestAssured.given();
+        httpRequest.header("Content-Type", "application/json");
+
+        JSONObject requestParams = new JSONObject();
+        requestParams.put("name", "");
+
+        httpRequest.body(requestParams.toJSONString());
+
+        Response response = httpRequest.request(Method.POST, "/brands");
+
+        String formattedString = response.getBody().prettyPrint();
+        System.out.println(formattedString);
+        System.out.println("status code : " + response.statusCode());
+        Assertions.assertEquals(500, response.statusCode());
     }
 
 

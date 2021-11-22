@@ -1,4 +1,4 @@
-CREATE TABLE IF NOT EXISTS public.brand
+CREATE TABLE IF NOT EXISTS brand
 (
     id bigint NOT NULL,
     name character varying(255) COLLATE pg_catalog."default",
@@ -10,5 +10,5 @@ CREATE TABLE IF NOT EXISTS public.brand
         )
     TABLESPACE pg_default;
 
-ALTER TABLE IF EXISTS public.brand
+ALTER TABLE IF EXISTS brand
     OWNER to postgres;
