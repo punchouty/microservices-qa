@@ -4,8 +4,9 @@ import io.restassured.RestAssured;
 import io.restassured.http.Method;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
+import org.json.simple.JSONObject;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.testcontainers.containers.DockerComposeContainer;
 import org.testcontainers.junit.jupiter.Container;
@@ -37,6 +38,7 @@ public class IntegrationTest {
         Response response = httpRequest.request(Method.GET, "/");
         String formattedString = response.getBody().prettyPrint();
         System.out.println(formattedString);
+        Assertions.assertEquals(200, response.statusCode());
 
     }
 
@@ -47,17 +49,7 @@ public class IntegrationTest {
         Response response = httpRequest.request(Method.GET, "/brands");
         String formattedString = response.getBody().prettyPrint();
         System.out.println(formattedString);
-
-    }
-
-    @Test
-    public void testGetBrandByIdSuccess() {
-        RestAssured.baseURI = "http://" + host + ":" + port;
-        RequestSpecification httpRequest = RestAssured.given();
-        Response response = httpRequest.request(Method.GET, "/brands/101");
-        System.out.println("status code : " + response.statusCode());
-        String formattedString = response.getBody().prettyPrint();
-        System.out.println(formattedString);
+        Assertions.assertEquals(200, response.statusCode());
 
     }
 
@@ -65,19 +57,31 @@ public class IntegrationTest {
     public void testCreateBrandsSuccess() {
         RestAssured.baseURI = "http://" + host + ":" + port;
         RequestSpecification httpRequest = RestAssured.given();
-        Response response = httpRequest.request(Method.GET, "/brands");
+        httpRequest.header("Content-Type", "application/json");
+
+        JSONObject requestParams = new JSONObject();
+        requestParams.put("name", "apple");
+
+        httpRequest.body(requestParams.toJSONString());
+
+        Response response = httpRequest.request(Method.POST, "/brands");
+
         String formattedString = response.getBody().prettyPrint();
         System.out.println(formattedString);
-
+        System.out.println("status code : " + response.statusCode());
+        Assertions.assertEquals(201, response.statusCode());
     }
 
+
+
     @Test
-    public void testGetLocationsSuccess() {
+    public void testGetBrandByIdFailure() {
         RestAssured.baseURI = "http://" + host + ":" + port;
         RequestSpecification httpRequest = RestAssured.given();
-        Response response = httpRequest.request(Method.GET, "/locations");
+        Response response = httpRequest.request(Method.GET, "/brands/1011010");
+        System.out.println("status code : " + response.statusCode());
         String formattedString = response.getBody().prettyPrint();
         System.out.println(formattedString);
-
+        Assertions.assertEquals(404, response.statusCode());
     }
 }
