@@ -27,6 +27,8 @@ services:
       - postgres:/data/postgre
   cud-api:
     image: cud-api:0.1
+    depends_on:
+      - postgres
     networks:
       - avis_network_test
     environment:

@@ -21,7 +21,7 @@ public class IntegrationTest {
     private final DockerComposeContainer<?> composeContainer =
             new DockerComposeContainer(
                     new File("src/test/resources/docker-compose.yaml"))
-                    .withExposedService("cud-api_1", 9100, Wait.forHttp("/"));
+                    .withExposedService("cud-api_1", 9100);
     private String host;
     private int port;
 
@@ -40,4 +40,24 @@ public class IntegrationTest {
         System.out.println(formattedString);
 
     }
+
+//    @Test
+//    public void testGetBrandsSuccess() {
+//        RestAssured.baseURI = "http://" + host + ":" + port;
+//        RequestSpecification httpRequest = RestAssured.given();
+//        Response response = httpRequest.request(Method.GET, "/brands");
+//        String formattedString = response.getBody().prettyPrint();
+//        System.out.println(formattedString);
+//
+//    }
+//
+//    @Test
+//    public void testGetLocationsSuccess() {
+//        RestAssured.baseURI = "http://" + host + ":" + port;
+//        RequestSpecification httpRequest = RestAssured.given();
+//        Response response = httpRequest.request(Method.GET, "/locations");
+//        String formattedString = response.getBody().prettyPrint();
+//        System.out.println(formattedString);
+//
+//    }
 }
