@@ -11,3 +11,14 @@ To check kafka - go to bin folder of kafka installation
 To check postgres and pgadmin Go to http://localhost:5050/
 * **User :** admin@admin.com
 * **Password :** root
+
+## Cud-api
+```
+cd <project root>
+docker image ls 
+docker image rm cud-api:0.1 # if exists
+mvn clean install
+docker build -t cud-api:0.1 ./cud-api/
+
+docker run -p 9100:9100 -e POSTGRES_URL=jdbc:postgresql://192.168.1.10:5432/postgres -e POSTGRES_USER=postgres -e POSTGRES_PASSWORD=password --name cud-api --network=avis_network -it cud-api:0.1
+```
