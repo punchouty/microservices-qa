@@ -24,8 +24,8 @@ services:
     ports:
       - "5432:5432"
     volumes:
-#      - postgres:/data/postgre
-      - ./postgres-data:/var/lib/postgresql/data
+      - postgres:/data/postgre
+#      - ./postgres-data:/var/lib/postgresql/data
       # copy the sql script to create tables
       - ./sql/create_tables.sql:/docker-entrypoint-initdb.d/create_tables.sql
       # copy the sql script to fill tables
@@ -42,5 +42,5 @@ services:
       - POSTGRES_PASSWORD=password
     ports:
       - "9100:9100"
-#volumes:
-#  postgres:
+volumes:
+  postgres:
