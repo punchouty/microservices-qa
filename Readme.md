@@ -1,16 +1,6 @@
 # Set up 
-## Environment 
-### Start kafka, zookeeper, postgres, pgadmin
-```
-docker compose up
-```
-To check kafka - go to bin folder of kafka installation
-```
-./kafka-topics.sh --bootstrap-server localhost:19092 --list
-```
-To check postgres and pgadmin Go to http://localhost:5050/
-* **User :** admin@admin.com
-* **Password :** root
+## CI/CD Flow
+![CI/CD Flow](docs/cicd-flow.png)
 
 ## Cud-api
 ```
@@ -27,3 +17,16 @@ docker run -p 9100:9100 -e POSTGRES_URL=jdbc:postgresql://192.168.1.10:5432/post
 docker compose -f cud-api-test/src/test/resources/docker-compose.yaml up
 docker compose -f cud-api-test/src/test/resources/docker-compose.yaml down
 ```
+
+## Development Environment
+### Start kafka, zookeeper, postgres, pgadmin
+```
+docker compose up
+```
+To check kafka - go to bin folder of kafka installation
+```
+./kafka-topics.sh --bootstrap-server localhost:19092 --list
+```
+To check postgres and pgadmin Go to http://localhost:5050/
+* **User :** admin@admin.com
+* **Password :** root
