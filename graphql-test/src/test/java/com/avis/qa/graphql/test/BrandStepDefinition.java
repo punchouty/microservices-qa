@@ -1,38 +1,45 @@
 package com.avis.qa.graphql.test;
 
+import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import io.restassured.RestAssured;
+import io.restassured.path.json.JsonPath;
+import io.restassured.response.Response;
+import io.restassured.specification.RequestSpecification;
+import org.junit.jupiter.api.Assertions;
+
+import java.util.List;
+import java.util.Map;
 
 public class BrandStepDefinition {
 
-    @Given("User has url to search id")
-    public void userHasUrlToSearchId() {
-        System.out.println("userHasUrlToSearchId");
-    }
+    private static RequestSpecification httpRequest;
+    private static Response httpResponse;
 
-    @When("User send post request with id as parameter")
-    public void userSendPostRequestWithIdAsParameter() {
-        System.out.println("userSendPostRequestWithIdAsParameter");
-    }
-
-    @Then("single branad is returned")
-    public void singleBranadIsReturned() {
-        System.out.println("singleBranadIsReturned");
-    }
-
-    @Given("User has url to get all brands")
+    @Given("Prepare url to get all brands")
     public void userHasUrlToGetAllBrands() {
-        System.out.println("userHasUrlToGetAllBrands");
+        RestAssured.baseURI = "http://localhost:8080";
+        httpRequest = RestAssured.given();
+        httpRequest.header("Content-Type", "application/json");
     }
 
-    @When("User send post request")
-    public void userSendPostRequest() {
-        System.out.println("userSendPostRequest");
+    @When("Send graphql request")
+    public void userSendGraphQlRequest() {
+        String payload = "{\"query\":\"\\nquery {\\n      brand {\\n        name\\n        code\\n      }\\n    }\\n\",\"variables\":null}";
+        httpResponse = httpRequest.body(payload).post("/graphql");
     }
 
-    @Then("List of brands is returned")
-    public void listOfBrandsIsReturned() {
-        System.out.println("listOfBrandsIsReturned");
+    @Then("Number of brands returned is {int}")
+    public void numberOfBrandsReturned(int count) {
+        String jsonString = httpResponse.asString();
+        List<Map<String, String>> brands = JsonPath.from(jsonString).get("data.brand");
+        Assertions.assertEquals(count, brands.size());
+    }
+
+    @And("Status code is {int}")
+    public void statusCodeIs(int statusCode) {
+        Assertions.assertEquals(statusCode, httpResponse.getStatusCode());
     }
 }
