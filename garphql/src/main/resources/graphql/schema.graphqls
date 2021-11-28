@@ -1,0 +1,18 @@
+type Query {
+    hello: String!
+    greeting(firstName: String, lastName: String!): String!
+    brand(idString: String!): Brand!
+    brand: [Brand]
+}
+
+type Location {
+    id: ID!
+    name: String
+    brand: String
+}
+
+type Brand {
+    id: ID!
+    name: String!
+    code: String
+}
