@@ -15,11 +15,12 @@ import javax.validation.constraints.NotBlank;
 public class Location {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @Column(unique=true)
     @NotBlank(message = "Location name is mandatory")
     private String name;
+    private String city;
     @ManyToOne
     @JoinColumn(name="brand_id")
     private Brand brand;

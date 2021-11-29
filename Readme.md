@@ -9,16 +9,44 @@ docker image ls
 docker image rm cud-api:0.1 # if exists
 mvn clean install
 docker build -t cud-api:0.1 ./cud-api/
-
-docker run -p 9100:9100 -e POSTGRES_URL=jdbc:postgresql://192.168.1.10:5432/postgres -e POSTGRES_USER=postgres -e POSTGRES_PASSWORD=password --name cud-api --network=avis_network -it cud-api:0.1
 ```
-### Run test environment
+### Run
+#### Development environment
+```
+docker compose -f cud-api/docker-compose.yml up
+docker compose -f cud-api/docker-compose.yml down
+```
+URL 
+* http://localhost:9100/locations - GET
+* http://localhost:9100/brands - GET
+* http://localhost:9100/brands - POST
+```json
+{
+    "name" :  "Avis",
+    "code" : "AVS"
+}
+```
+#### Test environment
 ```
 docker compose -f cud-api-test/src/test/resources/docker-compose.yaml up
 docker compose -f cud-api-test/src/test/resources/docker-compose.yaml down
 ```
+## GraphQL
+```
+cd <project root>
+docker image ls
+docker image rm graphql:0.1 # if exists
+mvn clean install
+docker build -t graphql:0.1 ./graphql/
+```
+### Run
+#### Test environment
+```
+docker compose -f graphql-test/docker-compose.yml up
+docker compose -f graphql-test/docker-compose.yml down
+```
 
-## Development Environment
+## Sample All Environment
 ### Start kafka, zookeeper, postgres, pgadmin
 ```
 docker compose up
@@ -30,22 +58,6 @@ To check kafka - go to bin folder of kafka installation
 To check postgres and pgadmin Go to http://localhost:5050/
 * **User :** admin@admin.com
 * **Password :** root
-
-## GraphQL 
-```
-cd <project root>
-docker image ls
-docker image rm graphql:0.1 # if exists
-mvn clean install
-docker build -t graphql:0.1 ./graphql/
-```
-### Run
-```
-docker compose -f graphql-test/docker-compose.yml up
-docker compose -f graphql-test/docker-compose.yml down
-
-
-
 
 
 

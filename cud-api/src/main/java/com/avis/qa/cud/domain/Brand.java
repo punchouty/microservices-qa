@@ -15,11 +15,12 @@ import java.util.List;
 public class Brand {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @Column(unique=true)
     @NotBlank(message = "Brand name is mandatory")
     private String name;
+    private String code;
 
     @OneToMany(mappedBy = "brand")
     private List<Location> locations;
