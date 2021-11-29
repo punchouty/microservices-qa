@@ -28,8 +28,8 @@ URL
 ```
 #### Test environment
 ```
-docker compose -f cud-api-test/src/test/resources/docker-compose.yaml up
-docker compose -f cud-api-test/src/test/resources/docker-compose.yaml down
+docker compose -f cud-api-test/docker-compose.yml up
+docker compose -f cud-api-test/docker-compose.yml down
 ```
 ## GraphQL
 ```

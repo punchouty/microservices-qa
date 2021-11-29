@@ -55,7 +55,7 @@ services:
       - DATABASE_PASSWORD=password
       - HIBERNATE_DIALECT=org.hibernate.dialect.PostgreSQLDialect
     ports:
-      - "9200:9200"
+      - "9100:9100"
 volumes:
   postgres:
   pgadmin:
