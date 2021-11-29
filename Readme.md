@@ -45,6 +45,12 @@ docker build -t graphql:0.1 ./graphql/
 docker compose -f graphql-test/docker-compose.yml up
 docker compose -f graphql-test/docker-compose.yml down
 ```
+## Orchestration
+#### Development environment
+```
+docker compose -f orchestration/docker-compose.yml up
+docker compose -f orchestration/docker-compose.yml down
+```
 
 ## Sample All Environment
 ### Start kafka, zookeeper, postgres, pgadmin
