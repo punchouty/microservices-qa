@@ -14,6 +14,10 @@
     <name>microservices-qa</name>
     <packaging>pom</packaging>
     <description>microservices-qa</description>
+    <modules>
+        <module>cud-api</module>
+        <module>graphql</module>
+    </modules>
     <properties>
         <java.version>11</java.version>
         <maven.compiler.source>11</maven.compiler.source>

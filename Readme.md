@@ -32,5 +32,63 @@ To check postgres and pgadmin Go to http://localhost:5050/
 * **Password :** root
 
 ## GraphQL 
-* http://localhost:8080/graphiql
-* http://localhost:8080/voyager
+```
+cd <project root>
+docker image ls
+docker image rm graphql:0.1 # if exists
+mvn clean install
+docker build -t graphql:0.1 ./graphql/
+```
+### Run
+```
+docker compose -f graphql-test/docker-compose.yml up
+docker compose -f graphql-test/docker-compose.yml down
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+```
+Go to http://localhost:5050/
+* **User :** admin@admin.com
+* **Password :** root
+* http://localhost:9200/graphiql
+* http://localhost:9200/voyager

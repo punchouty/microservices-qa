@@ -7,10 +7,10 @@
         <artifactId>blueprints</artifactId>
         <version>0.0.1-SNAPSHOT</version>
     </parent>
-    <artifactId>garphql</artifactId>
+    <artifactId>graphql</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>garphql</name>
-    <description>garphql</description>
+    <name>graphql</name>
+    <description>graphql</description>
     <properties>
         <java.version>11</java.version>
     </properties>
@@ -47,6 +47,11 @@
         <dependency>
             <groupId>com.h2database</groupId>
             <artifactId>h2</artifactId>
+            <scope>runtime</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.postgresql</groupId>
+            <artifactId>postgresql</artifactId>
             <scope>runtime</scope>
         </dependency>
     </dependencies>
