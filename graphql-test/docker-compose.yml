@@ -16,7 +16,6 @@ services:
     environment:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=password
-      - POSTGRES_DB= postgres
     logging:
       options:
         max-size: 10m
@@ -54,8 +53,7 @@ services:
       - DATABASE_DRIVER=org.postgresql.Driver
       - DATABASE_USER=postgres
       - DATABASE_PASSWORD=password
-      - DEFER_DATASOURCE_INITIALIZATION=true
-      - HIBERNATE_DDL_AUTO=none
+      - HIBERNATE_DIALECT=org.hibernate.dialect.PostgreSQLDialect
     ports:
       - "9200:9200"
 volumes:
