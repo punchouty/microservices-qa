@@ -11,3 +11,9 @@ VALUES(1,'J P Nagar','Bangalore'),
       (3,'Gurgaon','Delhi'),
       (4,'Banjara Hills','Hyderabad'),
       (4,'Jubilee Hills','Hyderabad');
+
+INSERT INTO employee(name, company)
+VALUES('Mark Zuckerberg','FB'),
+      ('Sundar Pichai','GOO'),
+      ('Tim Cook','APL'),
+      ('Satya Nadala','MSFT');

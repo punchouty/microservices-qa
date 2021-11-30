@@ -18,3 +18,9 @@ CREATE TABLE location (
             REFERENCES brand(id)
             ON DELETE SET NULL
 );
+CREATE TABLE employee (
+   id INT GENERATED ALWAYS AS IDENTITY,
+   name VARCHAR(255) NOT NULL,
+   company VARCHAR(255) NOT NULL,
+   PRIMARY KEY(id)
+);
