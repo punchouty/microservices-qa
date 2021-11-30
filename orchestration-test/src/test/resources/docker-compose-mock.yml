@@ -1,0 +1,56 @@
+version: '3.7'
+
+networks:
+  avis_network_test:
+    name: avis_network_test
+
+services:
+  postgres:
+    image: postgres:10.5
+    healthcheck:
+      test: psql postgres --command "select 1" -U postgres
+    restart: unless-stopped
+    networks:
+      - avis_network_test
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=password
+    logging:
+      options:
+        max-size: 10m
+        max-file: "3"
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./pgdata:/var/lib/postgresql/data
+      - ./data/schema.sql:/docker-entrypoint-initdb.d/1-schema.sql
+      - ./data/data.sql:/docker-entrypoint-initdb.d/2-data.sql
+  orchestration-api:
+    image: orchestration-api:0.1
+    depends_on:
+      - postgres
+    networks:
+      - avis_network_test
+    environment:
+      - DATABASE_URL=jdbc:postgresql://postgres:5432/postgres
+      - DATABASE_DRIVER=org.postgresql.Driver
+      - DATABASE_USER=postgres
+      - DATABASE_PASSWORD=password
+      - HIBERNATE_DIALECT=org.hibernate.dialect.PostgreSQLDialect
+    ports:
+      - "9300:9300"
+  wiremock:
+    image: wiremock/wiremock
+    networks:
+      - avis_network_test
+    volumes:
+      - ./wiremock/mappings:/wiremock/mappings
+      - ./wiremock/__files:/wiremock/__files
+      - ./wiremock/certificates:/wiremock/certificates
+    ports:
+      - "9100:9100"
+      - "9200:9200"
+volumes:
+  postgres:
+  pgadmin:
+
