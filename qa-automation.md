@@ -34,3 +34,9 @@ query {
       }
     }
 ```
+## Commands - Cud API
+### Start database, database ui and graph ql api
+```
+docker compose -f cud-api-test/docker-compose.yml up
+docker compose -f cud-api-test/docker-compose.yml down
+```
