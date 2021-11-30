@@ -20,7 +20,7 @@ public class BrandStepDefinition {
 
     @Given("Prepare url to get all brands")
     public void userHasUrlToGetAllBrands() {
-        RestAssured.baseURI = "http://localhost:9200";
+        RestAssured.baseURI = "http://localhost:9200"; // Move it to environment variable
         httpRequest = RestAssured.given();
         httpRequest.header("Content-Type", "application/json");
     }
