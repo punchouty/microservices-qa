@@ -12,7 +12,7 @@ VALUES(1,'J P Nagar','Bangalore'),
       (4,'Banjara Hills','Hyderabad'),
       (4,'Jubilee Hills','Hyderabad');
 
-INSERT INTO employee(name, company)
+INSERT INTO employee(name, company_code)
 VALUES('Mark Zuckerberg','FB'),
       ('Sundar Pichai','GOO'),
       ('Tim Cook','APL'),

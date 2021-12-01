@@ -71,21 +71,21 @@ services:
       - HIBERNATE_DIALECT=org.hibernate.dialect.PostgreSQLDialect
     ports:
       - "9200:9200"
-  orchestration-api:
-    image: orchestration-api:0.1
-    container_name: orchestration-api
-    depends_on:
-      - postgres
-    networks:
-      - avis_network_test
-    environment:
-      - DATABASE_URL=jdbc:postgresql://postgres:5432/postgres
-      - DATABASE_DRIVER=org.postgresql.Driver
-      - DATABASE_USER=postgres
-      - DATABASE_PASSWORD=password
-      - HIBERNATE_DIALECT=org.hibernate.dialect.PostgreSQLDialect
-    ports:
-      - "9300:9300"
+#  orchestration-api:
+#    image: orchestration-api:0.1
+#    container_name: orchestration-api
+#    depends_on:
+#      - postgres
+#    networks:
+#      - avis_network_test
+#    environment:
+#      - DATABASE_URL=jdbc:postgresql://postgres:5432/postgres
+#      - DATABASE_DRIVER=org.postgresql.Driver
+#      - DATABASE_USER=postgres
+#      - DATABASE_PASSWORD=password
+#      - HIBERNATE_DIALECT=org.hibernate.dialect.PostgreSQLDialect
+#    ports:
+#      - "9300:9300"
   wiremock:
     image: wiremock/wiremock
     container_name: wiremock
