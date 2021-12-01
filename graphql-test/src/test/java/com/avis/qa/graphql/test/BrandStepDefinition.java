@@ -15,12 +15,13 @@ import java.util.Map;
 
 public class BrandStepDefinition {
 
+    public static String BASE_URL = "http://localhost:9200"; // Get it from environment
     private static RequestSpecification httpRequest;
     private static Response httpResponse;
 
     @Given("Prepare url to get all brands")
     public void userHasUrlToGetAllBrands() {
-        RestAssured.baseURI = "http://localhost:9200"; // Move it to environment variable
+        RestAssured.baseURI = BASE_URL;
         httpRequest = RestAssured.given();
         httpRequest.header("Content-Type", "application/json");
     }

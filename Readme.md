@@ -49,6 +49,8 @@ docker compose -f graphql/docker-compose.yml down
 ```
 docker compose -f graphql-test/docker-compose.yml up
 docker compose -f graphql-test/docker-compose.yml down
+
+docker compose -f graphql-test/src/test/resources/docker-compose.yaml up
 ```
 ## Orchestration
 #### Development environment
