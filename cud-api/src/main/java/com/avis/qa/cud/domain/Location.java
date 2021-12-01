@@ -20,8 +20,6 @@ public class Location {
     @Column(unique=true)
     @NotBlank(message = "Location name is mandatory")
     private String name;
+    private String companyCode;
     private String city;
-    @ManyToOne
-    @JoinColumn(name="brand_id")
-    private Brand brand;
 }
