@@ -6,7 +6,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
+
+import java.io.IOException;
 
 @RestController
 @RequestMapping("/orchestration")
@@ -19,8 +22,8 @@ public class OrchestrationController {
     }
 
     @GetMapping("/{idString}")
-    private Mono<EmployeeInfo> getCeoCompanyAndLocation(@PathVariable String idString) {
+    private Flux<EmployeeInfo> getCeoCompanyAndLocation(@PathVariable String idString) throws IOException {
         Long id = Long.valueOf(idString);
-        return orchestrationService.getCeoCompanyAndLocation(id);
+        return orchestrationService.getEmployeeCompanyAndLocation(id);
     }
 }

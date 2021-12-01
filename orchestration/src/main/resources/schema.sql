@@ -1,0 +1,6 @@
+CREATE TABLE employee (
+  id INT GENERATED ALWAYS AS IDENTITY,
+  name VARCHAR(255) NOT NULL,
+  company_code VARCHAR(255) NOT NULL,
+  PRIMARY KEY(id)
+);
