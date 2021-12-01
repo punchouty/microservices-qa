@@ -5,12 +5,6 @@ type Query {
     brand: [Brand]
 }
 
-type Location {
-    id: ID!
-    name: String
-    brand: String
-}
-
 type Brand {
     id: ID!
     name: String!

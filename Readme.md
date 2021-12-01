@@ -40,6 +40,11 @@ mvn clean install
 docker build -t graphql:0.1 ./graphql/
 ```
 ### Run
+#### Dev environment
+```
+docker compose -f graphql/docker-compose.yml up
+docker compose -f graphql/docker-compose.yml down
+```
 #### Test environment
 ```
 docker compose -f graphql-test/docker-compose.yml up
