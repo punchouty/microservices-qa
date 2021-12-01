@@ -53,11 +53,28 @@ docker compose -f graphql-test/docker-compose.yml down
 docker compose -f graphql-test/src/test/resources/docker-compose.yaml up
 ```
 ## Orchestration
+```
+cd <project root>
+docker image ls
+docker image rm orchestration:0.1 # if exists
+mvn clean install
+docker build -t orchestration:0.1 ./orchestration/
+```
 #### Development environment
 ```
 docker compose -f orchestration/docker-compose.yml up
 docker compose -f orchestration/docker-compose.yml down
 ```
+#### Test environment
+```
+docker compose -f orchestration-test/docker-compose-e2e.yml up
+docker compose -f orchestration-test/docker-compose-e2e.yml down
+
+docker compose -f orchestration-test/docker-compose-mock.yml up
+docker compose -f orchestration-test/docker-compose-mock.yml down
+
+docker compose -f orchestration-test/docker-compose-wiremock.yml up
+docker compose -f orchestration-test/docker-compose-wiremock.yml down
 
 ## Sample All Environment
 ### Start kafka, zookeeper, postgres, pgadmin
@@ -72,7 +89,9 @@ To check postgres and pgadmin Go to http://localhost:5050/
 * **User :** admin@admin.com
 * **Password :** root
 
-
+## Wiremock
+ http://localhost:8080/__admin/recorder
+ http://localhost:8080/__admin/mappings
 
 
 

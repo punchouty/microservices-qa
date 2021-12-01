@@ -1,0 +1,22 @@
+version: '3.7'
+
+networks:
+  avis_network_test:
+    name: avis_network_test
+
+services:
+  wiremock:
+    image: wiremock/wiremock
+    container_name: wiremock
+    networks:
+      - avis_network_test
+    volumes:
+      - ./wiremock/mappings:/wiremock/mappings
+      - ./wiremock/__files:/wiremock/__files
+      - ./wiremock/certificates:/wiremock/certificates
+    ports:
+      - "8080:8080"
+volumes:
+  postgres:
+  pgadmin:
+
